@@ -1,0 +1,23 @@
+flowchart TD
+  A(["Every T_ctrl = 4 s"]) --> B["Telemetry: arrivals + features x,<br/>B(t), Q(t), active / booting VMs, T_st"]
+  B --> C["λ = n / W, Cₐ² = Var(A) / E[A]²"]
+  C --> D["N1 · RF oracle per job:<br/>mean Ŝ(x), error variance σ̂²(x)<br/>→ runtime distribution"]
+  D --> E["N1 · Corrected moments:<br/>Var(S) = Var(Ŝ) + E[σ̂²]<br/>Cₛ², μ, samples of S + T_st"]
+  E --> F["N3 · Backlog at boot completion:<br/>Q̃ = Q + B + max(0, λ − k_act μ) · T_scale"]
+  F --> G["For every k with ρ < 1:<br/>P_W, V, W_q = V · P_W / (kμ − λ)"]
+  G --> H["N2 · SLA tail on W_total:<br/>P = mean over samples of P_W e^(−(kμ−λ)τ/V)<br/>τ = T_SLA − S − T_st − Q̃/(kμ)"]
+  H --> I{"P ≤ ε ?"}
+  I -- "feasible k" --> J["Objective per k:<br/>J = λ·W_q + Q̃² / (2(kμ−λ)L) + c·k"]
+  I -- "none feasible" --> X["k* = k_max"]
+  J --> K["k* = argmin J"]
+  K --> L{"k* vs current k"}
+  X --> L
+  L -- "k* > k" --> M["Boot k* − k VMs now"]
+  L -- "lower 3× in a row" --> N["Scale down"]
+  L -- "equal" --> O["Hold"]
+  M --> P["Measure W_B, W_q, S, T_st,<br/>total waiting; refit RF on drift"]
+  N --> P
+  O --> P
+  P --> A
+  classDef nv stroke:#0E7068,stroke-width:3px
+  class D,E,F,H nv

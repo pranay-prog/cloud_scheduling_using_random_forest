@@ -1,0 +1,31 @@
+% Requires: \usepackage{booktabs,amssymb}
+% Y = addressed, P = partly, N = not addressed, -- = out of scope
+\newcommand{\Y}{$\checkmark$}
+\newcommand{\N}{$\times$}
+\newcommand{\Pt}{$\circ$}
+\begin{table*}[t]
+\centering
+\caption{Comparison with related work. Objective: what the method optimises. C1: queueing model; C2: arrival variability $C_a^2$ in sizing; C3: service variability $C_s^2$ in sizing; C4: per-request ML service-time prediction; C5: prediction uncertainty used in sizing; C6: percentile SLA targeted directly; C7: boot delay in the decision; C8: anti-thrash scale-down. \checkmark{} addressed, $\circ$ partly, $\times$ not addressed, -- out of scope.}
+\label{tab:related}
+\small
+\begin{tabular}{@{}lllcccccccc@{}}
+\toprule
+Work & Venue & Objective & C1 & C2 & C3 & C4 & C5 & C6 & C7 & C8 \\
+\midrule
+Urgaonkar et al.            & TAAS'08     & Min.\ servers s.t.\ resp.\ time & G/G/1 & \Y & \Y & \N & \Pt & \Pt & \N  & -- \\
+Gandhi et al. (AutoScale)   & TOCS'12     & Min.\ servers s.t.\ T95 & --    & \N & \N & \N & \N  & \Y  & \Pt & \Y \\
+Gandhi et al. (DC2)         & ICAC'14     & Meet perf.\ target & Model & \N & \N & \N & \N  & --  & \N  & -- \\
+Moreno-Vozmediano et al.    & JCC'19      & Min.\ VMs s.t.\ mean resp. & M/M/c & \N & \N & \N & \N  & \N  & \Pt & -- \\
+Mitzenmacher                & ITCS'20     & Min.\ mean resp.\ (ordering) & M/G/1 & \N & -- & \Y & \Pt & --  & --  & -- \\
+Rzadca et al. (Autopilot)   & EuroSys'20  & Min.\ slack/OOM & --    & \N & \N & \N & \N  & \N  & \N  & -- \\
+Qiu et al. (FIRM)           & OSDI'20     & Fewer SLO viol. & --    & \N & \N & \N & \N  & \Y  & \N  & -- \\
+Flunkert et al.             & arXiv'20    & Cost vs risk & --    & \N & \N & \N & \Pt & \N  & \Y  & -- \\
+Hang et al.                 & ICDE'24     & Robust cost & --    & \N & \N & \N & \Pt & \N  & \N  & -- \\
+Efrosinin et al.            & Math.'25    & Perf.\ analysis & GI/G/K& \Y & \Y & \N & \N  & --  & --  & -- \\
+Wang et al. (SLO-Scaler)    & arXiv'26    & Fewer p95 viol. & --    & \Pt& \N & \N & \Pt & \Y  & \N  & \Y \\
+Our prototype (v1)          & --          & Min.\ VMs s.t.\ mean $W_{total}$ & G/G/k & \Y & \Y & \Y & \N  & \Pt & \Pt & \N \\
+\midrule
+\textbf{Proposed}           & --          & Min.\ total wait $+$ cost s.t.\ P95 $W_{total}$ & \textbf{G/G/k} & \Y & \Y & \Y & \Y & \Y & \Y & \Y \\
+\bottomrule
+\end{tabular}
+\end{table*}

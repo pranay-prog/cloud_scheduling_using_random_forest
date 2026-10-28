@@ -1,0 +1,17 @@
+\begin{tabular}{@{}lcccccccccccc@{}}
+\toprule
+ & \multicolumn{3}{c}{Steady} & \multicolumn{3}{c}{Diurnal} & \multicolumn{3}{c}{Bursty} & \multicolumn{3}{c}{Mix shift} \\
+ & Viol.\,\% & Wait (h) & VM-h & Viol.\,\% & Wait (h) & VM-h & Viol.\,\% & Wait (h) & VM-h & Viol.\,\% & Wait (h) & VM-h \\
+\midrule
+Static & 1.9 & 0.09 & 12.2 & 7.4 & 6.74 & 12.2 & 45.2 & 130.13 & 12.3 & 5.2 & 1.60 & 12.8 \\
+HPA (util 70\%) & 1.9 & 0.09 & 14.1 & 1.8 & 0.08 & 14.1 & 12.8 & 10.06 & 16.0 & 4.6 & 0.39 & 15.6 \\
+Erlang-C (M/M/k) & 5.7 & 7.86 & 9.1 & 14.1 & 13.46 & 9.2 & 44.4 & 69.97 & 9.9 & 24.7 & 18.42 & 10.3 \\
+Prototype v1 (empirical) & 8.9 & 11.10 & 9.0 & 31.0 & 25.32 & 9.1 & 44.4 & 69.43 & 9.9 & 35.6 & 29.03 & 10.0 \\
+Prototype v1 (RF) & 10.6 & 12.96 & 8.9 & 28.9 & 24.59 & 9.0 & 44.8 & 70.08 & 9.9 & 31.9 & 21.71 & 10.0 \\
+Proposed (min-cost) & 2.5 & 3.21 & 10.0 & 2.4 & 3.20 & 10.0 & 9.1 & 8.61 & 14.7 & 6.0 & 2.16 & 13.7 \\
+Proposed $-$ N1 & 1.9 & 0.11 & 12.4 & 1.8 & 0.13 & 12.5 & 6.3 & 4.23 & 16.4 & 4.8 & 0.51 & 14.0 \\
+Proposed $-$ N2 & 1.9 & 0.07 & 12.9 & 1.8 & 0.08 & 12.9 & 6.1 & 4.09 & 16.6 & 4.7 & 0.39 & 14.1 \\
+Proposed $-$ N3 & 1.9 & 0.07 & 12.9 & 1.8 & 0.08 & 12.9 & 6.1 & 4.08 & 16.7 & 4.6 & 0.37 & 14.4 \\
+\textbf{Proposed} & \textbf{1.9} & \textbf{0.07} & \textbf{12.9} & \textbf{1.8} & \textbf{0.08} & \textbf{12.9} & \textbf{6.1} & \textbf{4.08} & \textbf{16.7} & \textbf{4.6} & \textbf{0.37} & \textbf{14.4} \\
+\bottomrule
+\end{tabular}

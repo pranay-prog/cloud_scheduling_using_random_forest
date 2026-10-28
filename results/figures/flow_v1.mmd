@@ -1,0 +1,18 @@
+flowchart TD
+  A(["Every T_ctrl = 4 s"]) --> B["Read last 30 s:<br/>arrival times, service times"]
+  B --> C["λ = n / W<br/>Cₐ² = Var(A) / E[A]²"]
+  C --> D["E[S], Cₛ²<br/>v1-emp: completed jobs<br/>v1-RF: point predictions Ŝ(x)"]
+  D --> E["μ = 1/E[S], a = λ/μ<br/>start at k = ⌊a⌋ + 1"]
+  E --> F["P_W = ErlangC(k, a)<br/>V = (Cₐ² + Cₛ²)/2<br/>W_q = V · P_W / (kμ − λ)"]
+  F --> G["Mean latency<br/>W̄_total = W_q + E[S] + E[T_st]"]
+  G --> H{"W̄_total ≤ α · T_SLA ?<br/>α = 0.8 if Cₐ² > 1.5"}
+  H -- no --> I["k = k + 1"]
+  I --> F
+  H -- yes --> J["k* = k<br/>(cheapest passing k)"]
+  J --> K{"k* vs current k"}
+  K -- "k* > k" --> L["Boot k* − k VMs now"]
+  K -- "lower 3× in a row" --> M["Scale down"]
+  K -- "equal" --> N["Hold"]
+  L --> A
+  M --> A
+  N --> A
